@@ -1,0 +1,185 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <!-- <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-dark shadow-dark border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">จัดการสินค้า</h6>
+            </div>
+          </div> -->
+          <div class="bg border-radius-lg pt-4 pb-3">
+            <h6 class="text-black text-capitalize ps-3">จัดการสินค้า</h6>
+          </div>
+          <div class="mt-4">
+            <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                </div>
+                <div class="col-6 text-end">
+                  <a class="btn bg-gradient-success mb-0" [routerLink]="['/product']"><i class="material-icons text-sm">add</i>เพิ่มสินค้า</a>
+                </div>
+              </div>
+            </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ประเภทสินค้า</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productList">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img *ngFor="let productImg of  product.imgList" [src]="productImg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{product.productName}}</h6>
+                            <p class="text-xs text-secondary mb-0">{{product.productDesc}}</p>
+                          </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">
+                        {{
+                          null != product.productType[0]
+                            ? product.productType[0].productTypeName
+                            : ""
+                        }}
+                      </p>
+                      <p class="text-xs text-secondary mb-0">
+                        {{
+                          null != product.productType[0]
+                            ? product.productType[0].productTypeDesc
+                            : ""
+                        }}
+                      </p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{product.price}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{product.quantity}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <button class="btn btn-warning " style="margin-right: 4px;"  (click)="onUpdateProduct(product.productId)">แก้ไข</button>
+                        <button class="btn btn-danger" (click)="onDeleteProduct(product.productId)">ลบ</button>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="body-content px-8 py-2 bg-slate-100">
+  <div class="flex justify-between mb-4">
+      <div class="page-title">
+          <h3 class="text-2xl font-semibold">Products</h3>
+          <ul class="text-xs font-medium flex items-center space-x-3 text-gray-600">
+              <li class="text-gray-500">
+                  <a href="./product-list.html" class="hover:text-blue-600">Home</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+ 
+  <div class="bg-white rounded-md shadow-sm py-4">
+      <div class="flex items-center justify-between px-8 py-6 flex-wrap">
+          <div class="relative">
+              <input class="input h-11 w-full pl-14 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="Search by product name">
+              <button class="absolute top-1/2 left-5 transform -translate-y-1/2 hover:text-blue-600">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M18.9999 19L14.6499 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+              </button>
+          </div>
+          <div class="flex sm:justify-end sm:space-x-6 flex-wrap">
+              <div class="flex items-center space-x-3 mr-3">
+                  <span class="text-xs leading-none">Categories:</span>
+                  <div class="relative">
+                      <select class="block appearance-none border rounded-md px-3 py-1 text-gray-700">
+                          <option value="Shoes">Shoes</option>
+                          <option value="Bags">Bags</option>
+                          <option value="Denim">Denim</option>
+                          <option value="Out of Stock">Out of Stock</option>
+                          <option value="Shirt">Shirt</option>
+                      </select>
+                  </div>
+              </div>
+              <div>
+                  <a href="add-product.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add Product</a>
+              </div>
+          </div>
+      </div>
+      <div class="relative mx-8 mb-5">
+          <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-6 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+              <div class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden relative">
+                  <a href="#">
+                      <img class="w-full h-48 object-cover" src="https://mdbcdn.b-cdn.net/docs/standard/design-blocks/ecommerce/checkout/assets/checkout-3.webp" alt="Product Image">
+                  </a>
+                  <div class="absolute top-4 right-4 z-10 flex flex-col space-y-2">
+                      <div class="relative" x-data="{ editTooltip: false }">
+                          <button class="w-10 h-10 flex items-center justify-center bg-green-600 text-white rounded-full hover:bg-green-700 focus:outline-none" x-on:mouseenter="editTooltip = true" x-on:mouseleave="editTooltip = false">
+                              <svg class="w-5 h-5" viewBox="0 0 492 492" fill="currentColor">
+                                  <path d="M304.14 82.473L33.163 353.469c-1.363 1.367-2.348 3.094-2.816 4.949l-30.035 120.555c-.898 3.629.168 7.488 2.816 10.137 2.004 2.004 4.734 3.113 7.527 3.113.855 0 1.73-.106 2.582-.32l120.555-30.039c1.879-.469 3.586-1.45 4.949-2.813L304.14 82.473zM476.875 45.523L446.71 15.358c-20.16-20.16-55.297-20.141-75.433-0.001l-36.949 36.949 105.598 105.598 36.949-36.949c10.07-10.067 15.617-23.465 15.617-37.715s-5.548-27.648-15.617-37.719z"></path>
+                              </svg>
+                          </button>
+                          <div x-show="editTooltip" class="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2 bg-gray-800 text-white text-xs rounded py-1 px-2">
+                              Edit
+                              <div class="w-2.5 h-2.5 -ml-1 rotate-45 bg-gray-800"></div>
+                          </div>
+                      </div>
+                      <div class="relative" x-data="{ deleteTooltip: false }">
+                          <button class="w-10 h-10 flex items-center justify-center bg-red-600 text-white rounded-full hover:bg-red-700 focus:outline-none" x-on:mouseenter="deleteTooltip = true" x-on:mouseleave="deleteTooltip = false">
+                              <svg class="w-4 h-4" viewBox="0 0 20 22" fill="currentColor">
+                                  <path d="M19.07 4.23c-1.61-.16-3.22-.28-4.84-.37v-.01l-.22-1.3c-.14-.92-.36-2.3-2.7-2.3H8.68c-2.33 0-2.55 1.3-2.71 2.3l-.22 1.3c-1.09.06-2.02.12-3.04.22L.93 4.23C.51 4.27.21 4.64.25 5.05c.04.41.36.73.78.72L3.11 5.52c5.24-.52 10.53-.3 15.83.23.03.01.04.01.06.01.39 0 .71-.29.76-.68.04-.39-.29-.71-.68-.76zM17.23 7.14c-.24-.25-.57-.39-.91-.39H3.68c-.25 0-.48.13-.74.39-.24.25-.37.58-.35.93l.62 10.25c.11 1.51.26 3.41 2.76 3.41h6.53c2.49 0 2.63-1.88 2.74-3.41l.62-10.25c.02-.35-.11-.68-.35-.93z"></path>
+                              </svg>
+                          </button>
+                          <div x-show="deleteTooltip" class="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2 bg-gray-800 text-white text-xs rounded py-1 px-2">
+                              Delete
+                              <div class="w-2.5 h-2.5 -ml-1 rotate-45 bg-gray-800"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="p-4">
+                      <a href="#" class="text-xs font-semibold text-gray-800 hover:text-blue-600 mb-2 inline-block">Whitetails Women's Open Sky</a>
+                      <div class="mb-2">
+                          <span class="text-sm font-medium text-black">$170.00</span>
+                      </div>
+                  </div>
+              </div>
+             
+          </div>
+      </div>
+      
+      <div class="flex items-center justify-between px-8 py-6">
+          <div class="text-xs text-gray-600">Showing 1–12 of 50 results</div>
+          <div>
+              <nav class="flex space-x-2">
+                  <a href="#" class="bg-blue-600 text-white rounded-md px-3 py-1.5 text-xs hover:bg-blue-700">1</a>
+                  <a href="#" class="bg-white border border-gray-300 text-gray-600 rounded-md px-3 py-1.5 text-xs hover:bg-gray-100">2</a>
+                  <a href="#" class="bg-white border border-gray-300 text-gray-600 rounded-md px-3 py-1.5 text-xs hover:bg-gray-100">3</a>
+                  <a href="#" class="bg-white border border-gray-300 text-gray-600 rounded-md px-3 py-1.5 text-xs hover:bg-gray-100">...</a>
+                  <a href="#" class="bg-white border border-gray-300 text-gray-600 rounded-md px-3 py-1.5 text-xs hover:bg-gray-100">12</a>
+              </nav>
+          </div>
+      </div>
+  </div>
+</div> -->

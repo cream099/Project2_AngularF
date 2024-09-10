@@ -1,0 +1,13 @@
+.header {
+    background-color: rgba(79, 65, 65, 0.106);
+    border-bottom: 2px solid rgb(152, 137, 137);
+}
+
+.nav-link, .fas {
+    color: rgb(79, 65, 65);
+  }
+
+.nav-link:hover, .fas:hover {
+    color: rgb(172, 151, 151); /* เปลี่ยนสีที่ต้องการ */
+}
+  

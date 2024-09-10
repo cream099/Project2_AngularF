@@ -1,0 +1,141 @@
+<div>
+  <section class="min-h-screen h-full bg-gray-100">
+    <div class="container mx-auto py-5 h-full">
+      <div class="flex justify-center items-center h-full">
+        <div class="w-full">
+          <div class="bg-white shadow-md rounded-lg">
+            <div class="p-4">
+  
+              <div class="flex flex-wrap">
+  
+                <div *ngIf="orderData" class="w-full lg:w-7/12 mb-4 lg:mb-0">
+                  <div *ngFor="let product of productList; let i = index" class="mb-3">
+                    <div class="p-4 bg-white shadow rounded-lg">
+                      <div class="flex justify-between">
+                        <div class="flex items-center">
+                          <div>
+                            <img
+                            *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" alt="Shopping item"
+                              class="w-16 h-16 object-cover rounded-lg" >
+                          </div>
+                          <div class="ml-3">
+                            <h5 class="font-medium">{{ product.productName }}</h5>
+                            <p class="text-gray-500 text-sm mb-0">Onyx Black</p>
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-12 text-center">
+                            <h5 class="font-normal mb-0">{{ getQuantity(orderData, product.productId) }}</h5>
+                          </div>
+                          <div class="w-20 text-center">
+                            <h5 class="mb-0">{{ product.price * product.quantity }}</h5>
+                          </div>
+                          <a href="#!" class="text-gray-300 ml-3">
+                            <i class="fas fa-trash-alt"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="w-full lg:w-5/12">
+  
+                  <div class="bg-primary text-white rounded-lg">
+                    <div class="p-4">
+                      <div class="flex justify-between items-center mb-4">
+                        <h5 class="mb-0">Card details</h5>
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                          class="w-11 h-11 object-cover rounded-lg" alt="Avatar">
+                      </div>
+  
+                      <p class="text-sm mb-2">Card type</p>
+                      <div class="flex space-x-3">
+                        <a href="#!" class="text-white">
+                          <i class="fab fa-cc-mastercard fa-2x"></i>
+                        </a>
+                        <a href="#!" class="text-white">
+                          <i class="fab fa-cc-visa fa-2x"></i>
+                        </a>
+                        <a href="#!" class="text-white">
+                          <i class="fab fa-cc-amex fa-2x"></i>
+                        </a>
+                        <a href="#!" class="text-white">
+                          <i class="fab fa-cc-paypal fa-2x"></i>
+                        </a>
+                      </div>
+  
+                      
+  
+                      <hr class="my-4 border-gray-300">
+  
+                      <div class="flex justify-between">
+                        <p class="mb-2">Subtotal</p>
+                        <p class="mb-2">$4798.00</p>
+                      </div>
+  
+                      <div class="flex justify-between">
+                        <p class="mb-2">Shipping</p>
+                        <p class="mb-2">$20.00</p>
+                      </div>
+  
+                      <div class="flex justify-between mb-4">
+                        <p class="mb-2">Total(Incl. taxes)</p>
+                        <p class="mb-2">$4818.00</p>
+                      </div>
+  
+                      <button type="button" class="btn btn-info btn-block text-lg font-medium py-3 w-full bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
+                        <div class="flex justify-between">
+                          <span>$4818.00</span>
+                          <span>Checkout <i class="fas fa-long-arrow-alt-right ml-2"></i></span>
+                        </div>
+                      </button>
+  
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</div>
+
+
+<ng-container *ngIf="orderData">
+
+
+userId: {{userData.userId}}
+name: {{userData.fristName}}_ {{userData.lastName}}
+
+<p>{{orderData.userId}}</p>
+<p>{{orderData.name}}</p>
+<p>{{orderData.phone}}</p>
+<p>{{orderData.shippingAddress}}</p>
+<p>{{orderData.createDate | date : "medium"}}</p>
+<p>{{orderData.status}}</p>
+
+ <p>{{orderData.ordersId}}</p>
+
+ <div *ngFor="let product of productList; let i = index">
+<img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" alt="noonn">
+
+<p>{{ product.productName }}</p>
+<p>{{ product.price }}</p>
+<p>{{ product.quantity }}</p>
+
+<p> {{ product.price * product.quantity }}</p>
+
+
+
+ </div>
+
+</ng-container>
+
+

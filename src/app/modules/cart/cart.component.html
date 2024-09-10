@@ -1,0 +1,157 @@
+<!-- <ng-container *ngIf="productList.length != 0">
+  <div class="container product-list">
+    <div class="card-table">
+      <div class="card-product">
+        <table class="table table-responsive product-table">
+          <thead>
+            <tr>
+              <th scope="col">sr.No</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productList; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="product-name">{{ product.productName }}</td>
+              <td>
+                
+                <img class="product-image" style="width: 120px;" *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" alt="{{ product.title }}">
+              
+              </td>
+              <td class="product-description">{{ product.productDesc | slice: 0:30 }}...
+              
+              </td>
+              <td class="product-price">{{ product.price }}</td>
+              <td class="product-quantity">{{ product.quantity }}</td>
+              <td class="product-total">{{ product.price }}</td>
+              <td>
+                <button (click)="removeItem(product)" class="btn btn-dark remove-btn">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td>
+                <button (click)="emptycart()" class="btn btn-danger empty-cart-btn">Empty Cart</button>
+              </td>
+              <td>
+                <button routerLink="/manage-product" class="btn btn-primary shop-more-btn">Shop More</button>
+              </td>
+              <td>
+                <button class="btn btn-success checkout-btn">Checkout</button>
+              </td>
+              <td class="grand-total"><strong>Grand Total: {{ grandTotal }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="productList.length == 0">
+  <div class="center empty-cart">
+    <h4>Your cart is empty</h4>
+    <h6>Add items to it now</h6>
+    <button class="btn btn-success shop-now-btn" [routerLink]="['/manage-product']">Shop Now</button>
+  </div>
+</ng-container> -->
+
+<div class="hero-content pb-5 text-center">
+  <h2 class="hero-heading">รถเข็นสินค้า</h2>
+  <div class="row">   
+    <!-- <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">You have 3 items in your shopping cart</p></div> -->
+  </div>
+
+  <section class="py-5">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="col-span-2">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <div class="w-1/5">รายการ</div>
+              <div class="w-1/5"></div>
+              <div class="w-1/5">จำนวน</div>
+              <div class="w-1/5">ราคา</div>
+              <div class="w-1/5"></div>
+            </div>
+          </div>
+          <div class="px-6 py-4">
+            <!-- Product Loop -->
+            <div class="cart-item border-b border-gray-200 py-4" *ngFor="let product of productList; let i = index">
+              <div class="flex items-center justify-between text-center">
+                <div class="col-5">
+                  <div class="flex items-center">
+                    <a href="detail.html">
+                      <img class="cart-item-img w-24 h-24 object-cover rounded" *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" alt="...">
+                    </a>
+                    <div class="cart-title ml-2 text-left">
+                      <a class="text-gray-900 font-semibold block text-sm">{{ product.productName | slice: 0:30 }}</a>
+                      <span class="text-sm block text-gray-600 pt-1">{{ product.productDesc }}</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="w-1/5">$65.00</div> -->
+                <div class="d-flex flex-row align-items-center" style="width: 130px">
+                  <button class="minus btn-control" data-mdb-button-init (click)="decrementQuantity(product)">
+                    -
+                  </button>
+                  <input class="quantity form-control form-control-sm text-center" min="1" style="width: 50px" name="quantity"
+                    [(ngModel)]="product.quantity" type="text" readonly />
+                  <button class="plus btn-control" (click)="incrementQuantity(product)">
+                    +
+                  </button>
+                </div>
+
+                <div class="w-1/5">{{ product.price | currency: "฿" }}</div>
+                <div class="w-1/5">
+                  <a href="/cart" class=" text-gray-500 hover:text-red-500">
+                    <i (click)="removeItem(product)" class="fa fa-times"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- End Product Loop -->
+          </div>
+        </div>
+        <div class=" d-flex justify-content-between flex-column flex-lg-row pt-4">
+          <a class="btn btn-link text-muted" href="/productd"><i class="fa fa-angle-left me-2"></i>ช้อปปิ้งต่อ</a>
+        </div>
+      </div>
+            <div class="">
+              <div class="block mb-5 p-4 border rounded">
+                <div class="block-header mb-3">
+                  <h5 class="text-uppercase mb-0 ">สรุปคำสั่งซื้อ</h5>
+                </div>
+                <div class="block-body bg-light pt-1">
+                  <ul class="order-summary mb-0 list-unstyled">
+                    <li class="order-summary-item d-flex justify-content-between border-bottom pb-2 mb-2"><span>ยอดรวมการสั่งซื้อ</span><span>{{ grandTotal | currency: "฿" }}</span></li>
+                    <li class="order-summary-item d-flex justify-content-between border-bottom pb-2 mb-2"><span>ค่าจัดส่ง</span><span>{{ shippingCost | currency: "฿" }}</span></li>
+                    <li class="order-summary-item d-flex justify-content-between pt-3 pb-4"><span>ยอดรวมทั้งหมด</span><strong class="order-summary-total">{{ grandTotal + shippingCost | currency: "฿" }}</strong></li>
+                  </ul>
+                </div>
+                <!-- <button [routerLink]="['/checkout']" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block btn-lg">
+                  <div class="d-flex justify-content-between">
+                    <span>ชำระเงิน</span>
+                    <span>{{ grandTotal + shippingCost | currency: "฿" }} </span>
+                  </div>
+                </button> -->
+                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block btn-lg">
+                  <div class="d-flex justify-content-between" (click)="setSelectedOrderId(productList)">
+                    <span>ชำระเงิน</span>
+                    <span>{{ grandTotal + shippingCost | currency: "฿" }} </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+</section>
+  

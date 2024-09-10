@@ -1,0 +1,38 @@
+<div class="container mx-auto px-4 py-5">
+  <div class="flex flex-wrap items-center">
+    <div class="w-full md:w-1/2 mb-5 md:mb-0 pr-8">
+      <div id="productCarousel" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let imageUrl of imageBlobUrls; let i = index" [class.active]="i === 0">
+            <a data-fslightbox="mygallery" class="rounded-4" target="_blank" data-type="image">
+              <img [src]="imageUrl" class="d-block w-90 rounded-4" style="max-width: 100%; max-height: 100vh; margin: auto;">
+            </a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <!-- <div class="text-sm mb-1">SKU: BST-498</div> -->
+      <h1 class="text-3xl font-bold mb-2">{{ selectedProduct.productName }}</h1>
+      <div class="text-2xl mb-5">
+        <span class="ml-2 text-orange-400">{{ selectedProduct.price | currency : "฿" }}</span>
+      </div>
+      <p class="text-lg mb-5">{{ selectedProduct.productDesc }}</p>
+      <div class="flex items-center">
+        <!-- <input class="text-center border border-gray-300 rounded mr-3 p-2" id="inputQuantity" type="number" value="1" style="max-width: 3rem"> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" (click)="addtoCart(selectedProduct)"><i class="fas fa-cart-plus me-2"></i>เพิ่มเข้ารถเข็น</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

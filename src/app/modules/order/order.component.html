@@ -1,0 +1,81 @@
+<div class="container">
+  <h2>การจัดการออร์เดอร์</h2>
+  <hr>
+  <!-- ฟอร์มสำหรับเพิ่มออร์เดอร์ -->
+  <form id="orderForm" (ngSubmit)="saveOrder()">
+      <div class="mb-3">
+          <label for="userId" class="form-label">รหัสผู้ใช้</label>
+          <input type="text" class="form-control" id="userId" name="userId" [(ngModel)]="orderForm.userId" required>
+      </div>
+      <div class="mb-3">
+          <label for="name" class="form-label">ชื่อ</label>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="orderForm.name" required>
+      </div>
+      <div class="mb-3">
+          <label for="shippingAddress" class="form-label">ที่อยู่ในการจัดส่ง</label>
+          <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" [(ngModel)]="orderForm.shippingAddress" required>
+      </div>
+      <div class="mb-3">
+          <label for="phone" class="form-label">โทรศัพท์</label>
+          <input type="tel" class="form-control" id="phone" name="phone" [(ngModel)]="orderForm.phone" required>
+      </div>
+      <div class="mb-3">
+          <label for="paymentId" class="form-label">รหัสการชำระเงิน</label>
+          <input type="text" class="form-control" id="paymentId" name="paymentId" [(ngModel)]="orderForm.paymentId">
+      </div>
+      <div class="mb-3">
+          <label for="status" class="form-label">สถานะ</label>
+          <select class="form-select" id="status" name="status" [(ngModel)]="orderForm.status" required>
+              <option value="">เลือกสถานะ</option>
+              <option value="รอดำเนินการ">รอดำเนินการ</option>
+              <option value="เสร็จสิ้น">เสร็จสิ้น</option>
+              <option value="ยกเลิก">ยกเลิก</option>
+          </select>
+      </div>
+      <div class="mb-3">
+          <label for="totalAmount" class="form-label">จำนวนเงินทั้งหมด</label>
+          <input type="number" step="0.01" class="form-control" id="totalAmount" name="totalAmount" [(ngModel)]="orderForm.totalAmount" required>
+      </div>
+      <div class="mb-3">
+          <label for="trackingNumber" class="form-label">หมายเลขการติดตาม</label>
+          <input type="text" class="form-control" id="trackingNumber" name="trackingNumber" [(ngModel)]="orderForm.trackingNumber">
+      </div>
+      <button type="submit" class="btn btn-primary">{{ editing ? 'แก้ไขออร์เดอร์' : 'เพิ่มออร์เดอร์' }}</button>
+  </form>
+  <hr>
+  <!-- รายการออร์เดอร์ -->
+  <h3>รายการออร์เดอร์</h3>
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">รหัสออร์เดอร์</th>
+              <th scope="col">รหัสผู้ใช้</th>
+              <th scope="col">ชื่อ</th>
+              <th scope="col">ที่อยู่ในการจัดส่ง</th>
+              <th scope="col">โทรศัพท์</th>
+              <th scope="col">รหัสการชำระเงิน</th>
+              <th scope="col">สถานะ</th>
+              <th scope="col">จำนวนเงินทั้งหมด</th>
+              <th scope="col">หมายเลขการติดตาม</th>
+              <th scope="col">การดำเนินการ</th>
+          </tr>
+      </thead>
+      <tbody id="orderList">
+          <tr *ngFor="let order of orders">
+              <td>{{ order.orderId }}</td>
+              <td>{{ order.userId }}</td>
+              <td>{{ order.name }}</td>
+              <td>{{ order.shippingAddress }}</td>
+              <td>{{ order.phone }}</td>
+              <td>{{ order.paymentId }}</td>
+              <td>{{ order.status }}</td>
+              <td>{{ order.totalAmount }}</td>
+              <td>{{ order.trackingNumber }}</td>
+              <td>
+                  <button class="btn btn-sm btn-info" (click)="editOrder(order)">แก้ไข</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteOrder(order.orderId)">ลบ</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>

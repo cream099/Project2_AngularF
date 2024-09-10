@@ -1,0 +1,44 @@
+.zoomable {
+    transition: transform 0.3s ease; /* ปรับการเปลี่ยนแปลง */
+  }
+  
+.zoomable:hover {
+    transform: scale(1.1); /* ขยายภาพเมื่อเม้าชี้ */
+}
+
+.carousel-item {
+      height: 50vh;
+      min-height: 300px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease;
+}
+.header-content {
+      position: absolute;
+      bottom: 20%;
+      left: 5%;
+      color: white;
+}
+.header-link {
+      color: white;
+}
+    
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+      display: block;
+}
+    
+.carousel-inner {
+      overflow: hidden;
+}
+
+.card {
+  background-color: rgb(255, 255, 255);
+}
+
+.btn-cart {
+  color: rgb(79, 65, 65);
+}
+
+.btn-cart:hover .fa-cart-plus {
+  color: rgb(172, 151, 151);
+}

@@ -1,0 +1,70 @@
+<header class="header p-3 border-2 text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      
+      <a [routerLink]="['/productd']" class="nav-link text-white">
+        <h2>FAYLINN</h2>
+      </a>
+      
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li *ngIf="null == userDetail"><a [routerLink]="['/']" routerLinkActive="router-link-active"  class="nav-link px-2 ">หน้าหลัก</a></li>
+        <li *ngIf="null != userDetail"><a [routerLink]="['/productd']" routerLinkActive="router-link-active"  class="nav-link px-2">หน้าหลัก</a></li>
+        <!-- <li *ngIf="null != userDetail"><a [routerLink]="['/profile']" routerLinkActive="router-link-active"  class="nav-link px-2 text-black">โปรไฟล์</a></li> -->
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-user']" routerLinkActive="router-link-active"  class="nav-link px-2">จัดการลูกค้า</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-product']" class="nav-link px-2">จัดการสินค้า</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/orderA']" class="nav-link px-2">จัดการคำสังซื้อ</a></li>
+        <!-- <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2" [routerLink]="['/report']">รายงาน</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2" [routerLink]="['/preview']">perview</a></li> -->
+        <!-- <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2" [routerLink]="['/productd']">product</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2" [routerLink]="['/payment']">payment</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2" [routerLink]="['/order']">order</a></li> -->
+
+        <li *ngIf="null != userDetail && userDetail.roleId == 2"><a [routerLink]="['/orderU']" class="nav-link px-2">คำสังซื้อ</a></li>
+      </ul>
+
+      <div class="text-end" *ngIf="null == userDetail">
+        <!-- <button type="button" class="btn btn-light me-2" [routerLink]="['/login']" routerLinkActive="router-link-active" >เข้าระบบ</button> -->
+        <!-- <button type="button" class="btn btn-secondary" [routerLink]="['/register']" routerLinkActive="router-link-active" >สมัครสมาชิก</button> -->
+      </div>
+      <button *ngIf="userDetail && userDetail.roleId == 2" class="btn border-t-cyan-50  m-1">
+        <i style="font-size: 18px;" class="fas fa-cart-plus me-0" [routerLink]="['/cart']" routerLinkActive="router-link-active"></i>
+        <div *ngIf="totalItem > 0" style="font-size: 10px; margin-left: 5px; color: black;" class="badge">{{ totalItem }}</div>
+      </button>
+      <!-- <div class="text-end" *ngIf="null != userDetail">
+        <button type="button" class="btn btn-light me-2 m-1" (click)="logout()"><i class="fas fa-sign-out-alt me-2">ออกจากระบบ</i></button>
+      </div> -->
+      <!-- header.component.html -->
+ <div class="dropdown">
+  <button class="btn border-t-cyan-50 me-2 m-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <img *ngIf="imgUser && imgUser.length > 0" [src]="'data:image;base64,' + imgUser" alt="Profile Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+    <i *ngIf="!imgUser || imgUser.length === 0" class="fas fa-user me-2"></i>
+  </button>
+  
+    <!-- *ngIf="imgUser" [src]="'data:image;base64,' + imgUser" -->
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li>
+      <a *ngIf="userDetail" class="dropdown-item" [routerLink]="['/profile']">
+        <i class="bi bi-person-circle me-2"></i>โปรไฟล์
+      </a>
+    </li>
+    <li>
+      <a *ngIf="!userDetail" class="dropdown-item" [routerLink]="['/login']">
+        <i class="fa fa-user me-2"></i>เข้าระบบ
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" (click)="logout()">
+        <i class="fas fa-sign-out-alt me-2"></i>ออกจากระบบ
+      </a>
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+.carousel-item {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.cart {
+  margin-left: 50px;
+}
+
+.modal-dialog.modal-lg {
+  max-width: 40%; /* กำหนดความกว้างของโมเดลเป็น 80% ของหน้าจอ */
+}
+
+.modal-img-container {
+  width: 100%; /* กำหนดขนาดของคอลัมน์ที่บรรจุรูปภาพ */
+  overflow: hidden; /* ป้องกันรูปภาพเกินขอบ */
+}
+
+.modal-description {
+  width: 50%; /* กำหนดขนาดของคอลัมน์ที่บรรจุรายละเอียด */
+  overflow-wrap: break-word; /* ป้องกันตัวหนังสือเกินขอบ */
+}
+
+.modal-img-container img {
+  max-height: 100%; /* กำหนดความสูงสูงสุดของรูปภาพในโมเดล */
+  width: 100%; /* กำหนดความกว้างของรูปภาพในโมเดล */
+  display: block;
+  margin: 0 auto;
+}
+
+.div {
+  font-family: "Kodchasan", sans-serif;
+}
+
+.zoomable {
+  transition: transform 0.3s ease; /* ปรับการเปลี่ยนแปลง */
+}
+
+.zoomable:hover {
+  transform: scale(1.1); /* ขยายภาพเมื่อเม้าชี้ */
+}

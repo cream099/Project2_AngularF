@@ -1,0 +1,129 @@
+<!-- <div class="container">
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="bg-dark shadow-dark border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">จัดการลูกค้า</h6>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ชื่อ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">นามสกุล</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">สถานะ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">เบอร์โทร</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">อายุ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of userList; let i = index">
+                    <td>
+                      <div class="align-middle text-center">
+                        {{i+1}}
+                      </div>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-xs font-weight-bold mb-0">{{item.fristName}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-xs font-weight-bold mb-0">{{item.lastName}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span *ngIf="item.status == '1'" class="badge badge-sm bg-gradient-success">ปกติ</span>
+                      <span *ngIf="item.status != '1'" class="badge badge-sm bg-gradient-danger">ผิดปกติ</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{item.phone}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{item.age}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button class="btn btn-warning me-1" (click)="onUpdateUser(item.userId)">แก้ไข</button>
+                      <button class="btn btn-danger" (click)="onDeleteUser(item.userId)">ลบ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div  class="overflow-hidden">
+
+  <div class="overflow-hidden p-3">
+    <div class="relative">
+      <div class="flex gap-4">
+        <div class="mt-2 flex-grow">
+          <div class="w-full id p-3 rounded-md shadow-md flex items-baseline">
+            <h5 class="text-base font-medium">จัดการลูกค้า</h5>
+          </div>
+        </div>
+    
+      </div>
+      <table class="w-full bg-gray-200 shadow-md rounded-lg divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">#</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">ชื่อ</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">นามสกุล</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">สถานะ</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">เบอร์โทร</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase">อายุ</th>
+            <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of userList; let i = index" class="divide-y divide-gray-200 rounded-md shadow-md">
+          <tr class="bg-white">
+            <td>
+              <div class="align-middle text-secondary text-center">
+                {{i+1}}
+              </div>
+            </td>
+            <td class="align-middle text-center">
+              <p class="text-xs text-secondary font-weight-bold mb-0">{{item.fristName}}</p>
+            </td>
+            <td class="align-middle text-center">
+              <p class="text-xs text-secondary font-weight-bold mb-0">{{item.lastName}}</p>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <span *ngIf="item.status == '1'" class="badge badge-sm bg-gradient-success">ปกติ</span>
+              <span *ngIf="item.status != '1'" class="badge badge-sm bg-gradient-danger">ผิดปกติ</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold">{{item.phone}}</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold">{{item.age}}</span>
+            </td>
+            
+            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+              <button (click)="onUpdateUser(item.userId)" class="text-yellow-600 rounded-md hover:underline me-4">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button (click)="onDeleteUser(item.userId)" class="text-orange-400 rounded-md hover:underline">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+

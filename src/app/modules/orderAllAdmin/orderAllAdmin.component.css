@@ -1,0 +1,15 @@
+.bg {
+    background-color: rgb(255, 255, 255);
+}
+
+.id {
+    background-color: rgba(79, 65, 65, 0.106);
+}
+
+.modal-content {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    border: 1px solid #ddd; /* Light border */
+    background-color: #f9f9f9; /* Light background */
+  }
+  

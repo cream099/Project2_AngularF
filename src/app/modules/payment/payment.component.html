@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mb-5">Payment Management</h1>
+      
+      <!-- Display payments in a table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Order ID</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td>{{ payment.paymentId }}</td>
+            <td>{{ payment.userId }}</td>
+            <td>{{ payment.orderId }}</td>
+            <td>{{ payment.paymentAmount | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ payment.paymentMethod }}</td>
+            <td>{{ payment.status }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2" (click)="editPayment(payment)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deletePayment(payment.paymentId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <!-- Form for adding or editing payments -->
+      <div class="card">
+        <div class="card-header">
+          {{ editing ? 'Edit Payment' : 'Add Payment' }}
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="savePayment()">
+            <div class="mb-3">
+              <label for="userId" class="form-label">User ID</label>
+              <input type="text" class="form-control" id="userId" name="userId" [(ngModel)]="paymentForm.userId" required>
+            </div>
+            <div class="mb-3">
+              <label for="orderId" class="form-label">Order ID</label>
+              <input type="text" class="form-control" id="orderId" name="orderId" [(ngModel)]="paymentForm.orderId" required>
+            </div>
+            <div class="mb-3">
+              <label for="paymentAmount" class="form-label">Amount</label>
+              <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" [(ngModel)]="paymentForm.paymentAmount" required>
+            </div>
+            <div class="mb-3">
+              <label for="paymentMethod" class="form-label">Payment Method</label>
+              <input type="text" class="form-control" id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentForm.paymentMethod" required>
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <input type="text" class="form-control" id="status" name="status" [(ngModel)]="paymentForm.status" required>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ editing ? 'Update' : 'Add' }}</button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="clearForm()">Clear</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

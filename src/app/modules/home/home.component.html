@@ -1,0 +1,95 @@
+
+      <!-- <div class="h-56 sm:h-50 xl:h-80 2xl:h-96">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://media-cdn.bnn.in.th/405110/AcerWeeklyDeal-2000x720-170624_230624-homepage_desktop_banner_medium.jpg" class="d-block w-100" alt="Acer Weekly Deal">
+            </div>
+            <div class="carousel-item">
+              <img src="https://media-cdn.bnn.in.th/405041/AsusBrandFair-2000x720-160624-300624-homepage_desktop_banner_medium.jpg" class="d-block w-100" alt="Asus Brand Fair">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div> -->
+      
+      
+
+      <div class="container mt-2">
+        <div class="row">
+            <div class="col-lg-2 col-md-6 mb-4" *ngFor="let product of productList">
+                <div class="card h-100">
+                    <a (click)="setSelectedProduct(product)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="card-img-container">
+                        <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="card-img-top zoomable" alt="Product Image">
+                    </a>
+                    <div class="card-footer border-top border-gray-300 p-4">
+                        <div href="#" class="text-sm">{{ product.productName }}</div>
+                        <h6 class="text-xs fw-light text-gray mt-2">{{ product.productDesc  | slice: 0:30 }}</h6>
+                        <div class="d-flex">
+                            <span class="h6 mb-3 text-danger me-2">{{ product.price | currency : "฿" }}</span> 
+                            <div *ngIf="!userDetail">
+                                <button class="btn btn-sm btn-light" style="font-size: 10px;" (click)="onCart(product.productId)">
+                                    <i class="fas fa-cart-plus me-2" style="font-size: 10px;" ></i> เพิ่มเข้ารถเข็น
+                                </button>
+                            </div>
+                            <div *ngIf="userDetail">
+                                <button class="btn btn-sm btn-light" style="font-size: 10px;" (click)="addtoCart(product)">
+                                    <i class="fas fa-cart-plus me-2" style="font-size: 10px;"></i> เพิ่มเข้ารถเข็น
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+
+      
+        <!-- <div class="modal fade pt-6" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ selectedProduct?.productName }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex">
+                <div *ngIf="selectedProduct?.imgList.length > 0" class="mr-3 modal-img-container">
+                  <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false">
+                    <div class="carousel-inner">
+                      <div *ngFor="let img of selectedProduct?.imgList; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+                        <img [src]="img" class="d-block w-100 modal-img" alt="Product Image">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="modal-description">
+                  <h5 class="modal-title text-xs">{{ selectedProduct?.productName }}</h5>
+                  <p class="pt-2 text-c">{{ selectedProduct?.productDesc }}</p>
+                  <div class="modal-footer mt-auto">
+                    <p class="card-text text-danger font-weight-bold mt-2">{{ selectedProduct?.price | currency : '฿' }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark" (click)="addtoCart(selectedProduct)">เพิ่มเข้าตะกร้า</button>
+              </div>
+            </div>
+          </div>
+        </div>  -->
+        
